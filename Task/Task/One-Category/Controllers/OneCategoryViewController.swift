@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewItemViewController: UIViewController {
+class OneCategoryViewController: UIViewController {
 
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     
@@ -16,10 +16,13 @@ class NewItemViewController: UIViewController {
     let headerViewMaxHeight: CGFloat = 314
     let height = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
 
-    
+    var headerString: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(headerString)
+        
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target:
@@ -44,14 +47,6 @@ class NewItemViewController: UIViewController {
 
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    @
 
 }

@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--New Item View Controller-->
+        <!--One Category View Controller-->
         <scene sceneID="Yfy-6T-Pgp">
             <objects>
-                <viewController storyboardIdentifier="NewItemViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0Ow-qh-p4p" customClass="NewItemViewController" customModule="Task" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OneCategoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0Ow-qh-p4p" customClass="OneCategoryViewController" customModule="Task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jef-xi-tMv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,14 +83,24 @@
                                     <outlet property="delegate" destination="0Ow-qh-p4p" id="sdo-nX-JPp"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eA-75-QhO">
+                                <rect key="frame" x="314" y="782" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="4jr-Mk-GEI"/>
+                                    <constraint firstAttribute="width" secondItem="3eA-75-QhO" secondAttribute="height" multiplier="1:1" id="bCc-gz-vTE"/>
+                                </constraints>
+                                <state key="normal" image="add"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="KGc-fn-VJW" firstAttribute="trailing" secondItem="QT2-hh-ShS" secondAttribute="trailing" id="8ml-tH-faw"/>
                             <constraint firstItem="d95-8H-PbB" firstAttribute="top" secondItem="Jef-xi-tMv" secondAttribute="top" id="H3r-nm-zom"/>
-                            <constraint firstItem="KGc-fn-VJW" firstAttribute="leading" secondItem="QT2-hh-ShS" secondAttribute="leading" id="XV0-CB-lOZ"/>
-                            <constraint firstItem="KGc-fn-VJW" firstAttribute="trailing" secondItem="QT2-hh-ShS" secondAttribute="trailing" id="asg-wC-v4x"/>
-                            <constraint firstItem="KGc-fn-VJW" firstAttribute="top" secondItem="d95-8H-PbB" secondAttribute="bottom" constant="-21" id="jZG-v1-EjC"/>
-                            <constraint firstItem="KGc-fn-VJW" firstAttribute="bottom" secondItem="QT2-hh-ShS" secondAttribute="bottom" id="nrg-zV-L4C"/>
+                            <constraint firstItem="QT2-hh-ShS" firstAttribute="trailing" secondItem="3eA-75-QhO" secondAttribute="trailing" constant="20" id="I4X-yS-8HK"/>
+                            <constraint firstItem="KGc-fn-VJW" firstAttribute="leading" secondItem="QT2-hh-ShS" secondAttribute="leading" id="JV3-Qu-7oX"/>
+                            <constraint firstItem="KGc-fn-VJW" firstAttribute="top" secondItem="d95-8H-PbB" secondAttribute="bottom" constant="-21" id="h4Y-4j-s5B"/>
+                            <constraint firstItem="KGc-fn-VJW" firstAttribute="bottom" secondItem="QT2-hh-ShS" secondAttribute="bottom" id="lTh-ey-3Uh"/>
+                            <constraint firstItem="QT2-hh-ShS" firstAttribute="bottom" secondItem="3eA-75-QhO" secondAttribute="bottom" id="prD-Ig-E7V"/>
                             <constraint firstItem="d95-8H-PbB" firstAttribute="leading" secondItem="QT2-hh-ShS" secondAttribute="leading" id="s8w-Kr-FdD"/>
                             <constraint firstItem="d95-8H-PbB" firstAttribute="trailing" secondItem="QT2-hh-ShS" secondAttribute="trailing" id="yJI-FQ-RNB"/>
                         </constraints>
@@ -106,4 +116,7 @@
             <point key="canvasLocation" x="121.73913043478262" y="-13.392857142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add" width="80" height="80"/>
+    </resources>
 </document>

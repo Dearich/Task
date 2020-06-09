@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol ListsCollectionViewControllerDelegate: class {
+    func didSelectItem(dataSource: ListsCollectionViewController, indexPath: Int)
+}
+
 class ListsCollectionViewController:NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
     
      var listItems = [ListsItem]()
+    weak var listsCollectionViewControllerDelegate: ListsCollectionViewControllerDelegate?
 
 
     // MARK: - Navigation
@@ -42,38 +47,46 @@ class ListsCollectionViewController:NSObject, UICollectionViewDelegate, UICollec
     
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.2) {
+            if let cell = collectionView.cellForItem(at: indexPath) as? ListsCollectionViewCell {
+                cell.contentView.transform = .init(scaleX: 0.95, y: 0.95)
+                cell.contentView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+
+        UIView.animate(withDuration: 0.5) {
+                   if let cell = collectionView.cellForItem(at: indexPath) as? ListsCollectionViewCell {
+                    cell.contentView.transform = .identity
+                    cell.contentView.backgroundColor = .white
+                   }
+               }
+
+    }
 
     // MARK: UICollectionViewDelegate
 
     /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+     func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
         return false
     }
 
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+     func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         return false
     }
 
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+     func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
     }
     */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("didSelectItemAt")
+        listsCollectionViewControllerDelegate?.didSelectItem(dataSource: self, indexPath: indexPath.row)
+        
         
     }
 

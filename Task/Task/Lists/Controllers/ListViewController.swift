@@ -14,13 +14,15 @@ class ListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let dataSource = ListsCollectionViewController()
+    var dataSource = ListsCollectionViewController()
+    var listItems = [ListsItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
          collectionView.register(ListsCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.dataSource = dataSource
         collectionView.delegate = dataSource
+        dataSource.listsCollectionViewControllerDelegate = self
         getLists()
 
     }
@@ -34,9 +36,9 @@ class ListViewController: UIViewController {
        }
 
     @IBAction func addButtonAction(_ sender: UIButton) {
-        let stroyboard = UIStoryboard(name:"NewItemStoryboard" , bundle: nil)
-        let vc = stroyboard.instantiateViewController(identifier: "NewItemViewController")
-        navigationController?.show(vc, sender: sender)
+      let stroyboard = UIStoryboard(name:"NewItemStoryboard" , bundle: nil)
+      let vc = stroyboard.instantiateViewController(identifier: "NewViewController") as! NewViewController
+      navigationController?.show(vc, sender: sender)
     }
 }
 
@@ -62,9 +64,22 @@ extension ListViewController {
                   }else {
                       guard let dictionaryList = listsOfItems else { return }
                     self?.dataSource.listItems = dictionaryList.lists
+                    self?.listItems = dictionaryList.lists
                     
                   }
               }
           }
+    
+}
+
+extension ListViewController: ListsCollectionViewControllerDelegate {
+    func didSelectItem(dataSource: ListsCollectionViewController, indexPath: Int) {
+        
+        let stroyboard = UIStoryboard(name:"OneCategoty" , bundle: nil)
+        let vc = stroyboard.instantiateViewController(identifier: "OneCategoryViewController") as! OneCategoryViewController
+        vc.headerString = listItems[indexPath].name
+        navigationController?.show(vc, sender: self)
+    }
+    
     
 }

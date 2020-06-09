@@ -15,7 +15,9 @@
 		151DB5C5248E617700AF8152 /* ExtentionListCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DB5C4248E617700AF8152 /* ExtentionListCollection.swift */; };
 		153388E4248E796F00ED2719 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153388E3248E796F00ED2719 /* ListViewController.swift */; };
 		153388E6248E831500ED2719 /* CosntraintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153388E5248E831500ED2719 /* CosntraintService.swift */; };
-		15AC384E248EE1F100BDFCA4 /* ExtentionNewItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC384D248EE1F100BDFCA4 /* ExtentionNewItemController.swift */; };
+		15AC384E248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC384D248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift */; };
+		15AC3852248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AC3851248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard */; };
+		15AC3854248F8F7F00BDFCA4 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC3853248F8F7F00BDFCA4 /* NewViewController.swift */; };
 		15C46D8F248E2784004C1C4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C46D8E248E2784004C1C4B /* AppDelegate.swift */; };
 		15C46D91248E2784004C1C4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C46D90248E2784004C1C4B /* SceneDelegate.swift */; };
 		15C46D93248E2784004C1C4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C46D92248E2784004C1C4B /* ViewController.swift */; };
@@ -24,8 +26,8 @@
 		15C46D9B248E2788004C1C4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15C46D9A248E2788004C1C4B /* Assets.xcassets */; };
 		15C46D9E248E2788004C1C4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15C46D9C248E2788004C1C4B /* LaunchScreen.storyboard */; };
 		15C46DAD248E2925004C1C4B /* ListStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15C46DAC248E2925004C1C4B /* ListStoryboard.storyboard */; };
-		15FA9931248E956C004BFE33 /* NewItemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FA9930248E956C004BFE33 /* NewItemStoryboard.storyboard */; };
-		15FA9935248E95D5004BFE33 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA9934248E95D4004BFE33 /* NewItemViewController.swift */; };
+		15FA9931248E956C004BFE33 /* OneCategoty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FA9930248E956C004BFE33 /* OneCategoty.storyboard */; };
+		15FA9935248E95D5004BFE33 /* OneCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA9934248E95D4004BFE33 /* OneCategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +39,9 @@
 		151DB5C4248E617700AF8152 /* ExtentionListCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionListCollection.swift; sourceTree = "<group>"; };
 		153388E3248E796F00ED2719 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		153388E5248E831500ED2719 /* CosntraintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosntraintService.swift; sourceTree = "<group>"; };
-		15AC384D248EE1F100BDFCA4 /* ExtentionNewItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionNewItemController.swift; sourceTree = "<group>"; };
+		15AC384D248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionOneCategoryViewController.swift; sourceTree = "<group>"; };
+		15AC3851248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewItemStoryboard.storyboard; sourceTree = "<group>"; };
+		15AC3853248F8F7F00BDFCA4 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		15C46D8B248E2784004C1C4B /* Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Task.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C46D8E248E2784004C1C4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15C46D90248E2784004C1C4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,8 +52,8 @@
 		15C46D9D248E2788004C1C4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15C46D9F248E2788004C1C4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15C46DAC248E2925004C1C4B /* ListStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListStoryboard.storyboard; sourceTree = "<group>"; };
-		15FA9930248E956C004BFE33 /* NewItemStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewItemStoryboard.storyboard; sourceTree = "<group>"; };
-		15FA9934248E95D4004BFE33 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
+		15FA9930248E956C004BFE33 /* OneCategoty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OneCategoty.storyboard; sourceTree = "<group>"; };
+		15FA9934248E95D4004BFE33 /* OneCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneCategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		15AC384F248F8C6100BDFCA4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				15AC3851248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		15AC3850248F8C6900BDFCA4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				15AC3853248F8F7F00BDFCA4 /* NewViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		15C46D82248E2784004C1C4B = {
 			isa = PBXGroup;
 			children = (
@@ -110,8 +130,8 @@
 			children = (
 				15C46DA5248E27FF004C1C4B /* Application */,
 				15C46DA8248E2838004C1C4B /* Lists */,
-				15C46DAA248E28B1004C1C4B /* One-Category */,
-				15C46DA9248E2870004C1C4B /* New Items */,
+				15C46DAA248E28B1004C1C4B /* NewItems */,
+				15C46DA9248E2870004C1C4B /* One-Category */,
 				15C46D9A248E2788004C1C4B /* Assets.xcassets */,
 				15C46D9F248E2788004C1C4B /* Info.plist */,
 				15C46D97248E2784004C1C4B /* Task.xcdatamodeld */,
@@ -158,20 +178,22 @@
 			path = Lists;
 			sourceTree = "<group>";
 		};
-		15C46DA9248E2870004C1C4B /* New Items */ = {
+		15C46DA9248E2870004C1C4B /* One-Category */ = {
 			isa = PBXGroup;
 			children = (
 				15FA9933248E95BD004BFE33 /* Controllers */,
 				15FA9932248E95B4004BFE33 /* Views */,
 			);
-			path = "New Items";
+			path = "One-Category";
 			sourceTree = "<group>";
 		};
-		15C46DAA248E28B1004C1C4B /* One-Category */ = {
+		15C46DAA248E28B1004C1C4B /* NewItems */ = {
 			isa = PBXGroup;
 			children = (
+				15AC3850248F8C6900BDFCA4 /* Controllers */,
+				15AC384F248F8C6100BDFCA4 /* Views */,
 			);
-			path = "One-Category";
+			path = NewItems;
 			sourceTree = "<group>";
 		};
 		15C46DAB248E28F7004C1C4B /* Controllers */ = {
@@ -195,7 +217,7 @@
 		15FA9932248E95B4004BFE33 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				15FA9930248E956C004BFE33 /* NewItemStoryboard.storyboard */,
+				15FA9930248E956C004BFE33 /* OneCategoty.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,8 +225,8 @@
 		15FA9933248E95BD004BFE33 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				15FA9934248E95D4004BFE33 /* NewItemViewController.swift */,
-				15AC384D248EE1F100BDFCA4 /* ExtentionNewItemController.swift */,
+				15FA9934248E95D4004BFE33 /* OneCategoryViewController.swift */,
+				15AC384D248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -277,9 +299,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				15C46D9E248E2788004C1C4B /* LaunchScreen.storyboard in Resources */,
+				15AC3852248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard in Resources */,
 				15C46DAD248E2925004C1C4B /* ListStoryboard.storyboard in Resources */,
 				15C46D9B248E2788004C1C4B /* Assets.xcassets in Resources */,
-				15FA9931248E956C004BFE33 /* NewItemStoryboard.storyboard in Resources */,
+				15FA9931248E956C004BFE33 /* OneCategoty.storyboard in Resources */,
 				15C46D96248E2784004C1C4B /* Main.storyboard in Resources */,
 				151DB5BD248E3DB200AF8152 /* Lists.json in Resources */,
 			);
@@ -294,15 +317,16 @@
 			files = (
 				151DB5BA248E2B2C00AF8152 /* ListsCollectionViewCell.swift in Sources */,
 				15C46D99248E2784004C1C4B /* Task.xcdatamodeld in Sources */,
-				15FA9935248E95D5004BFE33 /* NewItemViewController.swift in Sources */,
+				15FA9935248E95D5004BFE33 /* OneCategoryViewController.swift in Sources */,
 				15C46D93248E2784004C1C4B /* ViewController.swift in Sources */,
 				153388E6248E831500ED2719 /* CosntraintService.swift in Sources */,
 				15C46D8F248E2784004C1C4B /* AppDelegate.swift in Sources */,
 				151DB5C5248E617700AF8152 /* ExtentionListCollection.swift in Sources */,
 				151DB5C3248E473600AF8152 /* ListsItems.swift in Sources */,
 				15C46D91248E2784004C1C4B /* SceneDelegate.swift in Sources */,
+				15AC3854248F8F7F00BDFCA4 /* NewViewController.swift in Sources */,
 				151DB5B7248E2B0D00AF8152 /* ListsCollectionViewController.swift in Sources */,
-				15AC384E248EE1F100BDFCA4 /* ExtentionNewItemController.swift in Sources */,
+				15AC384E248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift in Sources */,
 				153388E4248E796F00ED2719 /* ListViewController.swift in Sources */,
 				151DB5C0248E414100AF8152 /* JSONService.swift in Sources */,
 			);

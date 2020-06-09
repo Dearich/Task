@@ -7,7 +7,7 @@
 //
 
 import UIKit
-extension NewItemViewController: UITableViewDelegate, UITableViewDataSource {
+extension OneCategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
          
