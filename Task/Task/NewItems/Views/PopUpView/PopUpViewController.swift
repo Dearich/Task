@@ -11,6 +11,7 @@ import UIKit
 class PopUpViewController: UIViewController {
 
     @IBOutlet weak var datePicker: UIDatePicker!
+    let setDateNotificationID = "ru.azizbek.setDateComplitedNotificationID"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class PopUpViewController: UIViewController {
         let dateString = dateFormatter.string(from: choosenDate)
         UserDefaults.standard.set(dateString, forKey: "choosenDate")
         print(dateString)
+        didFinishSetDate()
     }
     
     
@@ -47,4 +49,8 @@ class PopUpViewController: UIViewController {
               self.view.removeFromSuperview()
           }
       }
+    
+    func didFinishSetDate() {
+        NotificationCenter.default.post(name: NSNotification.Name(setDateNotificationID), object: self)
+    }
 }

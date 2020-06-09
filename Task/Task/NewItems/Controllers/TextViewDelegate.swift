@@ -10,27 +10,16 @@ import UIKit
 extension NewViewController: UITextViewDelegate {
 
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        
         textView.text = ""
         textView.textColor = .black
         return true
     }
 
-      
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        
-        return true
+    func setUpDate() {
+        let choosenDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM YY HH:mm"
+        let dateString = dateFormatter.string(from: choosenDate)
+        dateLabel.text = dateString
     }
-    
-    func setUpDate(){
-
-            let choosenDate = Date()
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd MMMM YY HH:mm"
-            let dateString = dateFormatter.string(from: choosenDate)
-            dateLabel.text = dateString
-
-    }
-
-
 }

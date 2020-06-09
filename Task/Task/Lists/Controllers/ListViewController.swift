@@ -58,7 +58,7 @@ extension ListViewController {
 //                navigationController.navigationBar.barTintColor =
         
                navigationItem.setHidesBackButton(true, animated: true)
-               navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-4"), landscapeImagePhone: UIImage(named: "menu"), style: .done, target: self, action: #selector(menu))
+               navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-4"), landscapeImagePhone: UIImage(named: "menu-4"), style: .done, target: self, action: #selector(menu))
                navigationController.navigationBar.tintColor = UIColor.black
     }
     

@@ -27,7 +27,6 @@ class ListsCollectionViewCell: UICollectionViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = .red
         return image
     }()
     
@@ -71,6 +70,6 @@ class ListsCollectionViewCell: UICollectionViewCell {
         subTitle.addConstraintsWithFormat(format: "H:|-15-[v0]-|", views: subTitle)
 
         image.addConstraintsWithFormat(format: "V:[v0]-[v1]-15-|", views:  title, subTitle)
-       
+        image.image = UIImage(named: listItem.image)
     }
 }
