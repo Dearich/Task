@@ -23,6 +23,10 @@ class ListViewController: UIViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = dataSource
         dataSource.listsCollectionViewControllerDelegate = self
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
         getLists()
 
     }
@@ -50,8 +54,9 @@ extension ListViewController {
                navigationController.navigationBar.isHidden = false
                navigationItem.largeTitleDisplayMode = .automatic
                navigationItem.title = "Lists"
+            
 //                navigationController.navigationBar.barTintColor =
-        navigationController.navigationBar.backgroundColor =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        
                navigationItem.setHidesBackButton(true, animated: true)
                navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-4"), landscapeImagePhone: UIImage(named: "menu"), style: .done, target: self, action: #selector(menu))
                navigationController.navigationBar.tintColor = UIColor.black

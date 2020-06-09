@@ -90,6 +90,9 @@
                                     <constraint firstAttribute="width" secondItem="3eA-75-QhO" secondAttribute="height" multiplier="1:1" id="bCc-gz-vTE"/>
                                 </constraints>
                                 <state key="normal" image="add"/>
+                                <connections>
+                                    <action selector="addTapped:" destination="0Ow-qh-p4p" eventType="touchUpInside" id="ubz-rc-YJu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

@@ -27,7 +27,7 @@ class OneCategoryViewController: UIViewController {
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target:
             self, action: #selector(back))
-        navigationController?.navigationBar.tintColor = UIColor.white
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.layer.cornerRadius = 20
     }
@@ -40,13 +40,15 @@ class OneCategoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         guard let navigationController = self.navigationController else { return }
-        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController.navigationBar.shadowImage = UIImage()
-        navigationController.navigationBar.isTranslucent = true
-        navigationController.view.backgroundColor = .clear
+        navigationController.navigationBar.tintColor = UIColor.white
 
     }
 
-    @
+    @IBAction func addTapped(_ sender: UIButton) {
+        
+        let stroyboard = UIStoryboard(name:"NewItemStoryboard" , bundle: nil)
+        let vc = stroyboard.instantiateViewController(identifier: "NewViewController") as! NewViewController
+        navigationController?.show(vc, sender: sender)
+    }
 
 }
