@@ -14,7 +14,7 @@ protocol ListsCollectionViewControllerDelegate: class {
 
 class ListsCollectionViewController:NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
     
-     var listItems = [ListsItem]()
+     var listItems = [CategoryList]()
     weak var listsCollectionViewControllerDelegate: ListsCollectionViewControllerDelegate?
 
 

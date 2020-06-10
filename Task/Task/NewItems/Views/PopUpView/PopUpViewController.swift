@@ -17,6 +17,7 @@ class PopUpViewController: UIViewController {
         super.viewDidLoad()
         moveIn()
         datePicker.minimumDate = Date()
+        
 
     }
     @IBAction func done(_ sender: UIButton) {
@@ -24,7 +25,7 @@ class PopUpViewController: UIViewController {
         let choosenDate = datePicker.date
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "dd MMMM YY HH:mm"
+        dateFormatter.dateFormat = "dd MMMM HH:mm"
         let dateString = dateFormatter.string(from: choosenDate)
         UserDefaults.standard.set(dateString, forKey: "choosenDate")
         print(dateString)
@@ -54,3 +55,4 @@ class PopUpViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(setDateNotificationID), object: self)
     }
 }
+

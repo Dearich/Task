@@ -11,19 +11,17 @@ import UIKit
 class NewViewController: UIViewController {
 
     let setDateNotificationID = "ru.azizbek.setDateComplitedNotificationID"
+    let setCategoryNotificationID = "ru.azizbek.setCategoryNotificationID"
 
     @IBOutlet weak var textViewOutlet: UITextView!
-
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-
-
     @IBOutlet weak var hightLabel: NSLayoutConstraint!
     @IBOutlet weak var hightTextView: NSLayoutConstraint!
     @IBOutlet weak var spaceLabelTextView: NSLayoutConstraint!
     @IBOutlet weak var spaceLabelView: NSLayoutConstraint!
-
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     var dateString: String?
 
 
@@ -55,14 +53,20 @@ class NewViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(handle(keyboardShowNotification:)),name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didFinishSetDate), name: NSNotification.Name(setDateNotificationID), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didFinishSetCategory), name: NSNotification.Name(setCategoryNotificationID), object: nil)
     }
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(setDateNotificationID), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(setCategoryNotificationID), object: nil)
     }
     @objc func didFinishSetDate() {
         print("didFinishSetDate")
         guard let dateDefault = UserDefaults.standard.string(forKey: "choosenDate") else { return }
         dateLabel.text = dateDefault
+    }
+    @objc func didFinishSetCategory () {
+        guard let category = UserDefaults.standard.string(forKey: "choosenCategory") else { return }
+        categoryLabel.text = category
     }
 
 
@@ -118,5 +122,21 @@ class NewViewController: UIViewController {
         myViewController.didMove(toParent: self)
     }
     
+    @IBAction func categotyAction(_ sender: UIButton) {
+        let myViewController = CategoryViewController(nibName: "CategoryViewController", bundle: nil)
+               self.addChild(myViewController)
+               myViewController.view.frame = self.view.frame
+               self.view.addSubview(myViewController.view)
+               
+               myViewController.didMove(toParent: self)
+    }
+    
+    
+    @IBAction func createAction(_ sender: UIButton) {
+        guard !textViewOutlet.text.isEmpty else { return }
+        guard categoryLabel.text != "Category" else { return }
+        CoreDataService.shared.saveTask(category: categoryLabel.text!, discription: textViewOutlet.text!, date: dateLabel.text!)
+        
+    }
     
 }

@@ -12,7 +12,7 @@ class ListsCollectionViewCell: UICollectionViewCell {
     
     let width = (UIScreen.main.bounds.width - 55)/2
     
-    var listItem: ListsItem!
+    var listItem: CategoryList!
     var subText = "23 Tasks"
 
     let title: UILabel = {
@@ -70,6 +70,6 @@ class ListsCollectionViewCell: UICollectionViewCell {
         subTitle.addConstraintsWithFormat(format: "H:|-15-[v0]-|", views: subTitle)
 
         image.addConstraintsWithFormat(format: "V:[v0]-[v1]-15-|", views:  title, subTitle)
-        image.image = UIImage(named: listItem.image)
+        image.image = UIImage(named: listItem.imageName!)
     }
 }

@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CategoryList" representedClassName="CategoryList" syncable="YES" codeGenerationType="class">
+        <attribute name="imageName" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="category" inverseEntity="Task"/>
+    </entity>
     <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
-        <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="String"/>
         <attribute name="discription" optional="YES" attributeType="String"/>
+        <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryList" inverseName="tasks" inverseEntity="CategoryList"/>
     </entity>
     <elements>
-        <element name="Task" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="CategoryList" positionX="-54" positionY="18" width="128" height="88"/>
+        <element name="Task" positionX="-288.328125" positionY="-167.82421875" width="128" height="103"/>
     </elements>
 </model>

@@ -18,7 +18,7 @@ extension NewViewController: UITextViewDelegate {
     func setUpDate() {
         let choosenDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM YY HH:mm"
+        dateFormatter.dateFormat = "dd MMMM HH:mm"
         let dateString = dateFormatter.string(from: choosenDate)
         dateLabel.text = dateString
     }

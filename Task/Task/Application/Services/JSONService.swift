@@ -9,45 +9,47 @@
 import Foundation
 
 class UseJson {
-    
+
     static let shared = UseJson()
-    
+
     private let jsonFilePath = Bundle.main.path(forResource: "Lists", ofType: "json")
-    
+    private let backgroudQueue = DispatchQueue(label: "ru.azizbek.DownloadData", qos: .userInteractive, attributes: .concurrent)
+
     private func readFromFile( compliton:@escaping (Data?, Error?)->()) {
         guard let path = jsonFilePath else { return }
         let fileURL = URL(fileURLWithPath: path)
-        
+
         do {
             let dataJson = try Data(contentsOf: fileURL, options: .mappedIfSafe)
-//            let json = try JSONSerialization.jsonObject(with: dataJson, options: [])
+            //            let json = try JSONSerialization.jsonObject(with: dataJson, options: [])
             print(dataJson)
             compliton(dataJson, nil)
         } catch {
             compliton(nil, error)
             print(error.localizedDescription)
         }
-        
+
     }
     
-     func parse( completion: @escaping (_ decodeData: ListsOfItems?, _ error: Error?) -> Void) {
-        readFromFile { (data, error) in
-            if error != nil{
-                print(error!.localizedDescription)
-                completion(nil, error)
-            }else {
-                do {
-                    guard let unwraptedData = data else {return}
-                    let decodedData = try JSONDecoder().decode(ListsOfItems.self, from: unwraptedData)
-                    completion(decodedData, nil)
-                  
-                } catch {
-                    print("decode error")
-                    print(error.localizedDescription)
+    func parse( completion: @escaping (_ decodeData: ListsOfItems?, _ error: Error?) -> Void) {
+        
+        backgroudQueue.async {
+            self.readFromFile { (data, error) in
+                if error != nil{
+                    print(error!.localizedDescription)
+                    completion(nil, error)
+                }else {
+                    do {
+                        guard let unwraptedData = data else {return}
+                        let decodedData = try JSONDecoder().decode(ListsOfItems.self, from: unwraptedData)
+                        completion(decodedData, nil)
+                        
+                    } catch {
+                        print("decode error")
+                        print(error.localizedDescription)
+                    }
                 }
             }
         }
-        
     }
-    
 }

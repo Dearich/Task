@@ -28,6 +28,9 @@
                                         <state key="normal" title="Create">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="createAction:" destination="6O8-3y-af1" eventType="touchUpInside" id="t42-ZS-3bA"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you planning?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTm-LH-Jgi">
                                         <rect key="frame" x="20" y="10" width="382" height="26.5"/>
@@ -71,6 +74,9 @@
                                                         <rect key="frame" x="0.0" y="72" width="30" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="A"/>
+                                                        <connections>
+                                                            <action selector="categotyAction:" destination="6O8-3y-af1" eventType="touchUpInside" id="MLh-dx-RDk"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -128,6 +134,7 @@
                     <navigationItem key="navigationItem" id="Db3-Uh-z2R"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="RNc-nH-IEQ" id="ZA7-VF-4il"/>
+                        <outlet property="categoryLabel" destination="Ap1-U8-zfa" id="Dbn-jw-eir"/>
                         <outlet property="dateLabel" destination="2io-1y-mzX" id="oSk-Yj-vnk"/>
                         <outlet property="hightLabel" destination="gcZ-aQ-JK4" id="xpx-28-gdZ"/>
                         <outlet property="hightTextView" destination="feF-pW-pbg" id="ehY-u0-gSa"/>

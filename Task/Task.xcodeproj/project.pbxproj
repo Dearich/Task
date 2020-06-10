@@ -13,6 +13,9 @@
 		151DB5C0248E414100AF8152 /* JSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DB5BF248E414100AF8152 /* JSONService.swift */; };
 		151DB5C3248E473600AF8152 /* ListsItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DB5C2248E473600AF8152 /* ListsItems.swift */; };
 		151DB5C5248E617700AF8152 /* ExtentionListCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DB5C4248E617700AF8152 /* ExtentionListCollection.swift */; };
+		152DA7A12490BE880029BAE4 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152DA79F2490BE880029BAE4 /* CategoryViewController.swift */; };
+		152DA7A22490BE880029BAE4 /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 152DA7A02490BE880029BAE4 /* CategoryViewController.xib */; };
+		152DA7A42490C5630029BAE4 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152DA7A32490C5630029BAE4 /* CoreDataService.swift */; };
 		153388E4248E796F00ED2719 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153388E3248E796F00ED2719 /* ListViewController.swift */; };
 		153388E6248E831500ED2719 /* CosntraintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153388E5248E831500ED2719 /* CosntraintService.swift */; };
 		15345E9F248FB33E0083CB25 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15345E9E248FB33D0083CB25 /* TextViewDelegate.swift */; };
@@ -22,6 +25,7 @@
 		15AC384E248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC384D248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift */; };
 		15AC3852248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AC3851248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard */; };
 		15AC3854248F8F7F00BDFCA4 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC3853248F8F7F00BDFCA4 /* NewViewController.swift */; };
+		15AE508924915B4C006ECFFB /* OneCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AE508824915B4C006ECFFB /* OneCategoryTableViewCell.swift */; };
 		15C46D8F248E2784004C1C4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C46D8E248E2784004C1C4B /* AppDelegate.swift */; };
 		15C46D91248E2784004C1C4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C46D90248E2784004C1C4B /* SceneDelegate.swift */; };
 		15C46D93248E2784004C1C4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C46D92248E2784004C1C4B /* ViewController.swift */; };
@@ -41,6 +45,9 @@
 		151DB5BF248E414100AF8152 /* JSONService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONService.swift; sourceTree = "<group>"; };
 		151DB5C2248E473600AF8152 /* ListsItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsItems.swift; sourceTree = "<group>"; };
 		151DB5C4248E617700AF8152 /* ExtentionListCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionListCollection.swift; sourceTree = "<group>"; };
+		152DA79F2490BE880029BAE4 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		152DA7A02490BE880029BAE4 /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
+		152DA7A32490C5630029BAE4 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		153388E3248E796F00ED2719 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		153388E5248E831500ED2719 /* CosntraintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosntraintService.swift; sourceTree = "<group>"; };
 		15345E9E248FB33D0083CB25 /* TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +57,7 @@
 		15AC384D248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionOneCategoryViewController.swift; sourceTree = "<group>"; };
 		15AC3851248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewItemStoryboard.storyboard; sourceTree = "<group>"; };
 		15AC3853248F8F7F00BDFCA4 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
+		15AE508824915B4C006ECFFB /* OneCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		15C46D8B248E2784004C1C4B /* Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Task.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C46D8E248E2784004C1C4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15C46D90248E2784004C1C4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +98,7 @@
 				151DB5BC248E3DB200AF8152 /* Lists.json */,
 				151DB5BF248E414100AF8152 /* JSONService.swift */,
 				153388E5248E831500ED2719 /* CosntraintService.swift */,
+				152DA7A32490C5630029BAE4 /* CoreDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -100,6 +109,15 @@
 				151DB5C2248E473600AF8152 /* ListsItems.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		152DA79E2490BE640029BAE4 /* CategoryPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				152DA79F2490BE880029BAE4 /* CategoryViewController.swift */,
+				152DA7A02490BE880029BAE4 /* CategoryViewController.xib */,
+			);
+			path = CategoryPopUp;
 			sourceTree = "<group>";
 		};
 		15345EA0248FC1B70083CB25 /* PopUpView */ = {
@@ -122,6 +140,7 @@
 		15AC384F248F8C6100BDFCA4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				152DA79E2490BE640029BAE4 /* CategoryPopUp */,
 				15345EA0248FC1B70083CB25 /* PopUpView */,
 				15AC3851248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard */,
 			);
@@ -135,6 +154,22 @@
 				15345E9E248FB33D0083CB25 /* TextViewDelegate.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		15AE5084249154C2006ECFFB /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				15AE5085249154E6006ECFFB /* Cell */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		15AE5085249154E6006ECFFB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				15AE508824915B4C006ECFFB /* OneCategoryTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		15C46D82248E2784004C1C4B = {
@@ -253,6 +288,7 @@
 		15FA9933248E95BD004BFE33 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				15AE5084249154C2006ECFFB /* DataSource */,
 				15FA9934248E95D4004BFE33 /* OneCategoryViewController.swift */,
 				15AC384D248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift */,
 			);
@@ -331,6 +367,7 @@
 				15C46DAD248E2925004C1C4B /* ListStoryboard.storyboard in Resources */,
 				15345EA4248FC1E40083CB25 /* PopUpViewController.xib in Resources */,
 				15C46D9B248E2788004C1C4B /* Assets.xcassets in Resources */,
+				152DA7A22490BE880029BAE4 /* CategoryViewController.xib in Resources */,
 				15FA9931248E956C004BFE33 /* OneCategoty.storyboard in Resources */,
 				15C46D96248E2784004C1C4B /* Main.storyboard in Resources */,
 				151DB5BD248E3DB200AF8152 /* Lists.json in Resources */,
@@ -348,6 +385,7 @@
 				15C46D99248E2784004C1C4B /* Task.xcdatamodeld in Sources */,
 				15FA9935248E95D5004BFE33 /* OneCategoryViewController.swift in Sources */,
 				15C46D93248E2784004C1C4B /* ViewController.swift in Sources */,
+				15AE508924915B4C006ECFFB /* OneCategoryTableViewCell.swift in Sources */,
 				15345EA7248FC89B0083CB25 /* CostomButton.swift in Sources */,
 				153388E6248E831500ED2719 /* CosntraintService.swift in Sources */,
 				15C46D8F248E2784004C1C4B /* AppDelegate.swift in Sources */,
@@ -357,9 +395,11 @@
 				151DB5C3248E473600AF8152 /* ListsItems.swift in Sources */,
 				15C46D91248E2784004C1C4B /* SceneDelegate.swift in Sources */,
 				15AC3854248F8F7F00BDFCA4 /* NewViewController.swift in Sources */,
+				152DA7A42490C5630029BAE4 /* CoreDataService.swift in Sources */,
 				151DB5B7248E2B0D00AF8152 /* ListsCollectionViewController.swift in Sources */,
 				15AC384E248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift in Sources */,
 				153388E4248E796F00ED2719 /* ListViewController.swift in Sources */,
+				152DA7A12490BE880029BAE4 /* CategoryViewController.swift in Sources */,
 				151DB5C0248E414100AF8152 /* JSONService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
