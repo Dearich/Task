@@ -13,7 +13,7 @@ class ListsCollectionViewCell: UICollectionViewCell {
     let width = (UIScreen.main.bounds.width - 55)/2
     
     var listItem: CategoryList!
-    var subText = "23 Tasks"
+    var subText = ""
 
     let title: UILabel = {
         let label = UILabel()
@@ -34,7 +34,7 @@ class ListsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: "HelveticaNeue", size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.systemGray5
+        label.textColor = UIColor.lightGray
         label.textAlignment = .left
         return label
     }()
@@ -47,6 +47,16 @@ class ListsCollectionViewCell: UICollectionViewCell {
 
 
     func setUpContentView() {
+        if listItem.name == "All"{
+            CoreDataService.shared.fetchTasks {[weak self] (tasks) in
+                
+                    self?.subText = "\(tasks.count) tasks"
+                
+            }
+        }else {
+            subText = "\(listItem.tasks?.allObjects.count ?? 0) tasks"
+        }
+        
         contentView.backgroundColor = #colorLiteral(red: 0.9999126792, green: 1, blue: 0.9998814464, alpha: 1)
         contentView.layer.cornerRadius = 5
        print( contentView.frame.width)

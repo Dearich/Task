@@ -14,7 +14,7 @@ class CategoryViewController: UIViewController, UIPickerViewDelegate {
 
     let listViewController = ListViewController()
     var arrayOfNames = [String]()
-    var choosenCategory = ""
+    var choosenCategory = "Work"
     var nameObservation: NSKeyValueObservation?
     
     @IBOutlet weak var pickerOutlet: UIPickerView!
@@ -22,14 +22,22 @@ class CategoryViewController: UIViewController, UIPickerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        pickerOutlet.dataSource = self
-        pickerOutlet.delegate = self
         CoreDataService.shared.fetchLists {[weak self] (lists) in
             for list in lists {
-                guard let name = list.name else { return }
-                self?.arrayOfNames.append(name)
+                if list.name == "All"{
+                    continue
+                }else {
+                    guard let name = list.name else { return }
+                    self?.arrayOfNames.append(name)
+                }
+                
             }
         }
+        DispatchQueue.main.async {
+            self.pickerOutlet.selectRow(0, inComponent: 0, animated: true)
+        }
+        pickerOutlet.dataSource = self
+        pickerOutlet.delegate = self
         
     }
 
@@ -38,7 +46,7 @@ class CategoryViewController: UIViewController, UIPickerViewDelegate {
         self.view.removeFromSuperview()
         
         UserDefaults.standard.set(choosenCategory, forKey: "choosenCategory")
-        print(choosenCategory)
+        
         didChooseCategory()
     }
 
@@ -62,6 +70,7 @@ extension CategoryViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         choosenCategory = arrayOfNames[row]
+        print(choosenCategory)
     }
 
 }

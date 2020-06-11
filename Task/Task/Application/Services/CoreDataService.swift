@@ -33,7 +33,6 @@ class CoreDataService {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<CategoryList>(entityName: "CategoryList")
-        
         do {
             let categorys = try managedContext.fetch(fetchRequest)
             complition(categorys)
@@ -53,7 +52,7 @@ class CoreDataService {
         
         fetchLists { (allCategory) in
             for oneCategory in allCategory where oneCategory.name == category {
-                oneCategory.tasks = NSSet.init(object: task)
+                oneCategory.addToTasks(task) 
             }
         }
         
@@ -70,11 +69,14 @@ class CoreDataService {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
-
+        let sortDiscriptor = NSSortDescriptor(key: #keyPath(Task.date), ascending: false)
+        let sortDiscriptor2 = NSSortDescriptor(key: #keyPath(Task.category), ascending: true)
+        fetchRequest.sortDescriptors = [sortDiscriptor, sortDiscriptor2]
         do {
             let tasks = try managedContext.fetch(fetchRequest)
             if category == nil {
                 complition(tasks)
+
             } else {
                 var taskFromSomeCategory = [Task]()
                 for task in tasks where task.category?.name == category {
@@ -82,8 +84,37 @@ class CoreDataService {
                 }
                 complition(taskFromSomeCategory)
             }
-            
+
         } catch  {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func updateStatus(task: Task,value: Bool){
+        fetchTasks { (allTask) in
+            for oneTask in allTask where oneTask === task {
+                oneTask.setValue(value, forKey: "done")
+                
+                do {
+                    try oneTask.managedObjectContext?.save()
+                    print("Удачное изменение")
+                } catch  {
+                    print(error.localizedDescription)
+                }
+                
+            }
+        }
+    }
+    func deleteTask(task:Task) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        managedContext.delete(task)
+        
+        do {
+            try managedContext.save()
+            print("Удачное удаление")
+        } catch {
             print(error.localizedDescription)
         }
     }

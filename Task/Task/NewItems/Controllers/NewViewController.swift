@@ -12,6 +12,7 @@ class NewViewController: UIViewController {
 
     let setDateNotificationID = "ru.azizbek.setDateComplitedNotificationID"
     let setCategoryNotificationID = "ru.azizbek.setCategoryNotificationID"
+    let needToUpdateNotificationID = "ru.azizbek.needToUpdateTableNotificationID"
 
     @IBOutlet weak var textViewOutlet: UITextView!
     @IBOutlet weak var subView: UIView!
@@ -23,6 +24,7 @@ class NewViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     var dateString: String?
+    var categoryString: String?
 
 
     var shapeLayer: CAShapeLayer!{
@@ -41,6 +43,9 @@ class NewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if categoryString != nil && categoryString != "All"{
+            categoryLabel.text = categoryString
+        }
         shapeLayer = CAShapeLayer()
         textViewOutlet.delegate = self
         textViewOutlet.becomeFirstResponder()
@@ -94,6 +99,7 @@ class NewViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = "New Task"
         navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
         setUpDate()
         navigationController?.navigationBar.tintColor = UIColor.black
     }
@@ -110,6 +116,10 @@ class NewViewController: UIViewController {
         path.move(to: CGPoint(x:textViewOutlet.frame.minX , y:textViewOutlet.frame.maxY ))    //начальная точка отрисовк
         path.addLine(to: CGPoint(x:textViewOutlet.frame.maxX , y: textViewOutlet.frame.maxY )) // конечная точка отрисовки
         shapeLayer.path = path.cgPath //добавляем путь отрисоки
+    }
+    
+    func updateTable() {
+        NotificationCenter.default.post(name: NSNotification.Name(needToUpdateNotificationID), object: self)
     }
     
     @IBAction func dataAction(_ sender: UIButton) {
@@ -133,9 +143,19 @@ class NewViewController: UIViewController {
     
     
     @IBAction func createAction(_ sender: UIButton) {
-        guard !textViewOutlet.text.isEmpty else { return }
-        guard categoryLabel.text != "Category" else { return }
+        guard !textViewOutlet.text.isEmpty else { costomAlert(title: "Empty Task", discription: ""); return }
+        guard categoryLabel.text != "Category" else { costomAlert(title: "Choose Category", discription: ""); return }
         CoreDataService.shared.saveTask(category: categoryLabel.text!, discription: textViewOutlet.text!, date: dateLabel.text!)
+        guard let navigationController = self.navigationController else { return }
+        navigationController.popViewController(animated: true)
+        updateTable()
+
+    }
+    private func costomAlert(title: String, discription: String) {
+        let alert = UIAlertController(title: title, message: discription, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true)
         
     }
     

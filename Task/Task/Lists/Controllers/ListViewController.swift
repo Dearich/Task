@@ -65,7 +65,7 @@ extension ListViewController {
         navigationController.navigationBar.isHidden = false
         navigationItem.largeTitleDisplayMode = .automatic
         navigationItem.title = "Lists"
-        
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-4"), landscapeImagePhone: UIImage(named: "menu-4"), style: .done, target: self, action: #selector(menu))
         navigationController.navigationBar.tintColor = UIColor.black
