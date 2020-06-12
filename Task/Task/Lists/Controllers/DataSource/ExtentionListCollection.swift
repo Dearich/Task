@@ -8,12 +8,11 @@
 
 import UIKit
 extension ListsCollectionViewController: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let width = UIScreen.main.bounds.width
         return CGSize(width: (width - 55)/2, height: (width - 55)/2)
     }
-    
-    
+
 }

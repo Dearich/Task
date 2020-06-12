@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 struct ListsItem: Codable {
     var name: String
     var image: String
@@ -17,6 +15,5 @@ struct ListsItem: Codable {
 
 struct ListsOfItems: Codable {
     var lists: [ListsItem]
-    
-}
 
+}

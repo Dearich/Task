@@ -12,11 +12,10 @@ protocol ListsCollectionViewControllerDelegate: class {
     func didSelectItem(dataSource: ListsCollectionViewController, indexPath: Int)
 }
 
-class ListsCollectionViewController:NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+class ListsCollectionViewController: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+
      var listItems = [CategoryList]()
     weak var listsCollectionViewControllerDelegate: ListsCollectionViewControllerDelegate?
-
 
     // MARK: - Navigation
 
@@ -26,7 +25,6 @@ class ListsCollectionViewController:NSObject, UICollectionViewDelegate, UICollec
         // Pass the selected object to the new view controller.
     }
 
-
     // MARK: UICollectionViewDataSource
 
      func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -34,17 +32,16 @@ class ListsCollectionViewController:NSObject, UICollectionViewDelegate, UICollec
         return 1
     }
 
-
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return listItems.count
     }
 
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ListsCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ListsCollectionViewCell else { return UICollectionViewCell()}
         cell.listItem = listItems[indexPath.row]
         cell.setUpContentView()
-    
+
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
@@ -55,7 +52,7 @@ class ListsCollectionViewController:NSObject, UICollectionViewDelegate, UICollec
             }
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
 
         UIView.animate(withDuration: 0.5) {
@@ -86,8 +83,7 @@ class ListsCollectionViewController:NSObject, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelectItemAt")
         listsCollectionViewControllerDelegate?.didSelectItem(dataSource: self, indexPath: indexPath.row)
-        
-        
+
     }
 
 }

@@ -15,7 +15,7 @@ class UseJson {
     private let jsonFilePath = Bundle.main.path(forResource: "Lists", ofType: "json")
     private let backgroudQueue = DispatchQueue(label: "ru.azizbek.DownloadData", qos: .userInteractive, attributes: .concurrent)
 
-    private func readFromFile( compliton:@escaping (Data?, Error?)->()) {
+    private func readFromFile( compliton:@escaping (Data?, Error?) -> Void ) {
         guard let path = jsonFilePath else { return }
         let fileURL = URL(fileURLWithPath: path)
 
@@ -30,20 +30,20 @@ class UseJson {
         }
 
     }
-    
+
     func parse( completion: @escaping (_ decodeData: ListsOfItems?, _ error: Error?) -> Void) {
-        
+
         backgroudQueue.async {
             self.readFromFile { (data, error) in
-                if error != nil{
+                if error != nil {
                     print(error!.localizedDescription)
                     completion(nil, error)
-                }else {
+                } else {
                     do {
                         guard let unwraptedData = data else {return}
                         let decodedData = try JSONDecoder().decode(ListsOfItems.self, from: unwraptedData)
                         completion(decodedData, nil)
-                        
+
                     } catch {
                         print("decode error")
                         print(error.localizedDescription)

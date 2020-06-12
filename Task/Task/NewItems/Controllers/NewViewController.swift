@@ -26,8 +26,7 @@ class NewViewController: UIViewController {
     var dateString: String?
     var categoryString: String?
 
-
-    var shapeLayer: CAShapeLayer!{
+    var shapeLayer: CAShapeLayer! {
         didSet {
         shapeLayer.lineWidth = 2
         shapeLayer.lineCap =  CAShapeLayerLineCap(rawValue: "round")
@@ -55,8 +54,8 @@ class NewViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
         costomtextView()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handle(keyboardShowNotification:)),name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(handle(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didFinishSetDate), name: NSNotification.Name(setDateNotificationID), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didFinishSetCategory), name: NSNotification.Name(setCategoryNotificationID), object: nil)
     }
@@ -66,14 +65,19 @@ class NewViewController: UIViewController {
     }
     @objc func didFinishSetDate() {
         print("didFinishSetDate")
-        guard let dateDefault = UserDefaults.standard.string(forKey: "choosenDate") else { return }
-        dateLabel.text = dateDefault
+         let timestamp = UserDefaults.standard.double(forKey: "choosenDate")
+        let date = Date(timeIntervalSince1970: timestamp)
+        let dateFormater = DateFormatter()
+        dateFormater.timeZone = TimeZone.current
+        dateFormater.locale = NSLocale.current
+        dateFormater.dateFormat = "dd MMMM HH:mm"
+        let strDate = dateFormater.string(from: date)
+        dateLabel.text = strDate
     }
     @objc func didFinishSetCategory () {
         guard let category = UserDefaults.standard.string(forKey: "choosenCategory") else { return }
         categoryLabel.text = category
     }
-
 
     @objc private func handle(keyboardShowNotification notification: Notification) {
 
@@ -99,12 +103,12 @@ class NewViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = "New Task"
         navigationItem.hidesBackButton = true
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         setUpDate()
         navigationController?.navigationBar.tintColor = UIColor.black
     }
 
-    private func costomtextView(){
+    private func costomtextView() {
         textViewOutlet.backgroundColor = .clear
         textViewOutlet.layer.borderWidth = 0
     }
@@ -113,39 +117,43 @@ class NewViewController: UIViewController {
         //задаем отображение и указывем направление отрисовки фигуры
         shapeLayer.frame = textViewOutlet.bounds
         let path = UIBezierPath()
-        path.move(to: CGPoint(x:textViewOutlet.frame.minX , y:textViewOutlet.frame.maxY ))    //начальная точка отрисовк
-        path.addLine(to: CGPoint(x:textViewOutlet.frame.maxX , y: textViewOutlet.frame.maxY )) // конечная точка отрисовки
+        path.move(to: CGPoint(x: textViewOutlet.frame.minX, y: textViewOutlet.frame.maxY ))    //начальная точка отрисовк
+        path.addLine(to: CGPoint(x: textViewOutlet.frame.maxX, y: textViewOutlet.frame.maxY )) // конечная точка отрисовки
         shapeLayer.path = path.cgPath //добавляем путь отрисоки
     }
-    
+
     func updateTable() {
         NotificationCenter.default.post(name: NSNotification.Name(needToUpdateNotificationID), object: self)
     }
-    
+
     @IBAction func dataAction(_ sender: UIButton) {
-        
+
         let myViewController = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
         self.addChild(myViewController)
         myViewController.view.frame = self.view.frame
         self.view.addSubview(myViewController.view)
-        
+
         myViewController.didMove(toParent: self)
     }
-    
+
     @IBAction func categotyAction(_ sender: UIButton) {
         let myViewController = CategoryViewController(nibName: "CategoryViewController", bundle: nil)
                self.addChild(myViewController)
                myViewController.view.frame = self.view.frame
                self.view.addSubview(myViewController.view)
-               
+
                myViewController.didMove(toParent: self)
     }
-    
-    
+
     @IBAction func createAction(_ sender: UIButton) {
         guard !textViewOutlet.text.isEmpty else { costomAlert(title: "Empty Task", discription: ""); return }
         guard categoryLabel.text != "Category" else { costomAlert(title: "Choose Category", discription: ""); return }
-        CoreDataService.shared.saveTask(category: categoryLabel.text!, discription: textViewOutlet.text!, date: dateLabel.text!)
+        var timestamp = UserDefaults.standard.double(forKey: "choosenDate")
+        if timestamp == 0.0 {
+            let date = Date().timeIntervalSince1970
+            timestamp = date
+        }
+        CoreDataService.shared.saveTask(category: categoryLabel.text!, discription: textViewOutlet.text!, date: timestamp)
         guard let navigationController = self.navigationController else { return }
         navigationController.popViewController(animated: true)
         updateTable()
@@ -156,7 +164,7 @@ class NewViewController: UIViewController {
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true)
-        
+
     }
-    
+
 }

@@ -21,13 +21,13 @@ class ViewController: UIViewController {
             self.activityIndicatior.stopAnimating()
             self.activityIndicatior.isHidden = true
             let storyboard = UIStoryboard(name: "ListStoryboard", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ListViewController")
+            let viewController = storyboard.instantiateViewController(withIdentifier: "ListViewController")
             guard let navigationController = self.navigationController else { return }
-            navigationController.show(vc, sender: self)
-            
+            navigationController.show(viewController, sender: self)
+
         }
     }
-    
+
     func delay (_ delay: Int, closure: @ escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
             closure()
@@ -43,4 +43,3 @@ class ViewController: UIViewController {
     }
 
 }
-

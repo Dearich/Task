@@ -17,6 +17,8 @@ extension NewViewController: UITextViewDelegate {
 
     func setUpDate() {
         let choosenDate = Date()
+        let timestamp = choosenDate.timeIntervalSince1970
+        UserDefaults.standard.set(timestamp, forKey: "choosenDate")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMMM HH:mm"
         let dateString = dateFormatter.string(from: choosenDate)
