@@ -10,8 +10,6 @@ import UIKit
 
 class NewViewController: UIViewController {
 
-    let setDateNotificationID = "ru.azizbek.setDateComplitedNotificationID"
-    let setCategoryNotificationID = "ru.azizbek.setCategoryNotificationID"
     let needToUpdateNotificationID = "ru.azizbek.needToUpdateTableNotificationID"
 
     @IBOutlet weak var textViewOutlet: UITextView!
@@ -25,6 +23,10 @@ class NewViewController: UIViewController {
     @IBOutlet weak var categoryLabel: UILabel!
     var dateString: String?
     var categoryString: String?
+    var timestamp: Double?
+    let popUpViewController = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
+    let categoryViewController = CategoryViewController(nibName: "CategoryViewController", bundle: nil)
+    let costomAlert = CostomAlertController()
 
     var shapeLayer: CAShapeLayer! {
         didSet {
@@ -42,6 +44,9 @@ class NewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        timestamp = 0.0
+        categoryViewController.categoryViewControllerDelegate = self
+        popUpViewController.popUpViewControllerDelegate = self
         if categoryString != nil && categoryString != "All"{
             categoryLabel.text = categoryString
         }
@@ -56,27 +61,6 @@ class NewViewController: UIViewController {
         costomtextView()
 
         NotificationCenter.default.addObserver(self, selector: #selector(handle(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didFinishSetDate), name: NSNotification.Name(setDateNotificationID), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didFinishSetCategory), name: NSNotification.Name(setCategoryNotificationID), object: nil)
-    }
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(setDateNotificationID), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(setCategoryNotificationID), object: nil)
-    }
-    @objc func didFinishSetDate() {
-        print("didFinishSetDate")
-         let timestamp = UserDefaults.standard.double(forKey: "choosenDate")
-        let date = Date(timeIntervalSince1970: timestamp)
-        let dateFormater = DateFormatter()
-        dateFormater.timeZone = TimeZone.current
-        dateFormater.locale = NSLocale.current
-        dateFormater.dateFormat = "dd MMMM HH:mm"
-        let strDate = dateFormater.string(from: date)
-        dateLabel.text = strDate
-    }
-    @objc func didFinishSetCategory () {
-        guard let category = UserDefaults.standard.string(forKey: "choosenCategory") else { return }
-        categoryLabel.text = category
     }
 
     @objc private func handle(keyboardShowNotification notification: Notification) {
@@ -107,7 +91,6 @@ class NewViewController: UIViewController {
         setUpDate()
         navigationController?.navigationBar.tintColor = UIColor.black
     }
-
     private func costomtextView() {
         textViewOutlet.backgroundColor = .clear
         textViewOutlet.layer.borderWidth = 0
@@ -128,43 +111,55 @@ class NewViewController: UIViewController {
 
     @IBAction func dataAction(_ sender: UIButton) {
 
-        let myViewController = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
-        self.addChild(myViewController)
-        myViewController.view.frame = self.view.frame
-        self.view.addSubview(myViewController.view)
-
-        myViewController.didMove(toParent: self)
+        self.addChild(popUpViewController)
+        popUpViewController.view.frame = self.view.frame
+        self.view.addSubview(popUpViewController.view)
+        print("dataAction")
+        popUpViewController.didMove(toParent: self)
     }
 
     @IBAction func categotyAction(_ sender: UIButton) {
-        let myViewController = CategoryViewController(nibName: "CategoryViewController", bundle: nil)
-               self.addChild(myViewController)
-               myViewController.view.frame = self.view.frame
-               self.view.addSubview(myViewController.view)
+               self.addChild(categoryViewController)
+               categoryViewController.view.frame = self.view.frame
+               self.view.addSubview(categoryViewController.view)
 
-               myViewController.didMove(toParent: self)
+               categoryViewController.didMove(toParent: self)
     }
 
     @IBAction func createAction(_ sender: UIButton) {
-        guard !textViewOutlet.text.isEmpty else { costomAlert(title: "Empty Task", discription: ""); return }
-        guard categoryLabel.text != "Category" else { costomAlert(title: "Choose Category", discription: ""); return }
-        var timestamp = UserDefaults.standard.double(forKey: "choosenDate")
+        guard !textViewOutlet.text.isEmpty else { costomAlert.setup(title: "Empty Task", discription: ""); return }
+        guard categoryLabel.text != "Category" else { costomAlert.setup(title: "Choose Category", discription: ""); return }
+
         if timestamp == 0.0 {
             let date = Date().timeIntervalSince1970
             timestamp = date
         }
+         guard let timestamp = timestamp else { return }
         CoreDataService.shared.saveTask(category: categoryLabel.text!, discription: textViewOutlet.text!, date: timestamp)
         guard let navigationController = self.navigationController else { return }
         navigationController.popViewController(animated: true)
         updateTable()
 
     }
-    private func costomAlert(title: String, discription: String) {
-        let alert = UIAlertController(title: title, message: discription, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true)
+}
+// POPUP VIEW DELEGATE
 
+extension NewViewController: CategoryViewControllerDelegate, PopUpViewControllerDelegate {
+
+    func getDate(timestamp: Double) {
+
+        self.timestamp = timestamp
+        let date = Date(timeIntervalSince1970: timestamp)
+        let dateFormater = DateFormatter()
+        dateFormater.timeZone = TimeZone.current
+        dateFormater.locale = NSLocale.current
+        dateFormater.dateFormat = "dd MMMM HH:mm"
+        let strDate = dateFormater.string(from: date)
+        dateLabel.text = strDate
+    }
+
+    func getCategory(category: String) {
+        categoryLabel.text = category
     }
 
 }

@@ -60,7 +60,7 @@
                                 <rect key="frame" x="0.0" y="280" width="414" height="506"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="k9S-lS-E2w" customClass="OneCategoryTableViewCell" customModule="Task" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OneCategoryCell" id="k9S-lS-E2w" customClass="OneCategoryTableViewCell" customModule="Task" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="79.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k9S-lS-E2w" id="8Bi-My-Q2r">

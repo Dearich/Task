@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Button: UIButton {
+class CostomButton: UIButton {
 
      var color: UIColor = #colorLiteral(red: 0.346395731, green: 0.5247719884, blue: 1, alpha: 1)
 

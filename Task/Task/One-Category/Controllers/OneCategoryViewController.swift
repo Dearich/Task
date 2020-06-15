@@ -27,23 +27,13 @@ class OneCategoryViewController: UIViewController {
     var headerString: String = ""
     var imageString: String = ""
     var newDictionary = ["Late": [Task](), "In progress": [Task](), "Done": [Task]()]
-    var objectArray = [Objects]()
+    var taskSectionsArray = [TaskSections]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        imageOutlet.image = UIImage(named: imageString)
-        imageOutlet.backgroundColor = .white
-        imageOutlet.layer.masksToBounds = true
-        imageOutlet.layer.cornerRadius = 30
-
-        titleOutlet.text = headerString
-        titleOutlet.textColor = .white
-
-        navigationItem.largeTitleDisplayMode = .never
-        navigationItem.hidesBackButton = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target:
-            self, action: #selector(back))
+        setUpHeaderView()
+        navConfig()
         getTasks()
         tableView.layer.cornerRadius = 20
 
@@ -83,7 +73,7 @@ class OneCategoryViewController: UIViewController {
 
         if titleOutlet.text == "All"{
             CoreDataService.shared.fetchTasks {[weak self] (allTasks) in
-                self?.objectArray.removeAll()
+                self?.taskSectionsArray.removeAll()
                 for (key, _) in self!.newDictionary {
                     self?.newDictionary[key] = [Task]()
                 }
@@ -102,13 +92,13 @@ class OneCategoryViewController: UIViewController {
                 }
                 let sortedDic = self?.newDictionary.sorted(by: { $0.0 > $1.0 })
                     for (key, value) in sortedDic! {
-                        self?.objectArray.append(Objects(sectionName: key, sectionObjects: value))
+                        self?.taskSectionsArray.append(TaskSections(sectionName: key, sectionObjects: value))
                     }
 
             }
         } else {
             CoreDataService.shared.fetchTasks(category: titleOutlet.text!) {[weak self] (categoryTask) in
-                self?.objectArray.removeAll()
+                self?.taskSectionsArray.removeAll()
                 for (key, _) in self!.newDictionary {
                     self?.newDictionary[key] = [Task]()
                 }
@@ -125,9 +115,29 @@ class OneCategoryViewController: UIViewController {
                 }
                 let sortedDic = self?.newDictionary.sorted(by: { $0.0 > $1.0 })
                 for (key, value) in sortedDic! {
-                    self?.objectArray.append(Objects(sectionName: key, sectionObjects: value))
+                    self?.taskSectionsArray.append(TaskSections(sectionName: key, sectionObjects: value))
                 }
             }
         }
+    }
+}
+
+extension OneCategoryViewController {
+    
+    func setUpHeaderView() {
+        imageOutlet.image = UIImage(named: imageString)
+        imageOutlet.backgroundColor = .white
+        imageOutlet.layer.masksToBounds = true
+        imageOutlet.layer.cornerRadius = 30
+
+        titleOutlet.text = headerString
+        titleOutlet.textColor = .white
+    }
+    
+    func navConfig(){
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target:
+            self, action: #selector(back))
     }
 }

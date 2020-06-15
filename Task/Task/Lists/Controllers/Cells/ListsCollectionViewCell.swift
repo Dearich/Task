@@ -10,7 +10,7 @@ import UIKit
 
 class ListsCollectionViewCell: UICollectionViewCell {
 
-    let width = (UIScreen.main.bounds.width - 55)/2
+    let horizontalSize = ((UIScreen.main.bounds.width - 55)/2) - 15
 
     var listItem: CategoryList!
     var subText = ""
@@ -61,7 +61,7 @@ class ListsCollectionViewCell: UICollectionViewCell {
        print( contentView.frame.width)
         contentView.addSubview(subView)
 
-        subView.addConstraintsWithFormat(format: "H:|-[v0(\(width - 15))]", views: subView)
+        subView.addConstraintsWithFormat(format: "H:|-[v0(\(horizontalSize))]", views: subView)
         subView.addConstraintsWithFormat(format: "V:|-[v0]-|", views: subView)
 
         subView.addSubview(image)
@@ -78,6 +78,7 @@ class ListsCollectionViewCell: UICollectionViewCell {
         subTitle.addConstraintsWithFormat(format: "H:|-15-[v0]-|", views: subTitle)
 
         image.addConstraintsWithFormat(format: "V:[v0]-[v1]-15-|", views: title, subTitle)
-        image.image = UIImage(named: listItem.imageName!)
+        guard let normalImageName = listItem.imageName else { return }
+        image.image = UIImage(named: normalImageName )
     }
 }

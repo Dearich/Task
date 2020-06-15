@@ -9,13 +9,16 @@
 import UIKit
 import CoreData
 
+protocol CategoryViewControllerDelegate: class {
+    func getCategory(category: String)
+}
+
 class CategoryViewController: UIViewController, UIPickerViewDelegate {
     let setCategoryNotificationID = "ru.azizbek.setCategoryNotificationID"
 
-    let listViewController = ListViewController()
     var arrayOfNames = [String]()
     var choosenCategory = "Work"
-    var nameObservation: NSKeyValueObservation?
+    weak var categoryViewControllerDelegate: CategoryViewControllerDelegate?
 
     @IBOutlet weak var pickerOutlet: UIPickerView!
 
@@ -44,13 +47,8 @@ class CategoryViewController: UIViewController, UIPickerViewDelegate {
     @IBAction func doneAction(_ sender: UIButton) {
         self.view.removeFromSuperview()
 
-        UserDefaults.standard.set(choosenCategory, forKey: "choosenCategory")
+        categoryViewControllerDelegate?.getCategory(category: choosenCategory)
 
-        didChooseCategory()
-    }
-
-    func didChooseCategory() {
-        NotificationCenter.default.post(name: NSNotification.Name(setCategoryNotificationID), object: self)
     }
 
 }

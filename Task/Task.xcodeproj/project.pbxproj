@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		151DB5B7248E2B0D00AF8152 /* ListsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DB5B6248E2B0D00AF8152 /* ListsCollectionViewController.swift */; };
+		151DB5B7248E2B0D00AF8152 /* CategoryCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DB5B6248E2B0D00AF8152 /* CategoryCollectionDataSource.swift */; };
 		151DB5BA248E2B2C00AF8152 /* ListsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DB5B9248E2B2C00AF8152 /* ListsCollectionViewCell.swift */; };
 		151DB5BD248E3DB200AF8152 /* Lists.json in Resources */ = {isa = PBXBuildFile; fileRef = 151DB5BC248E3DB200AF8152 /* Lists.json */; };
 		151DB5C0248E414100AF8152 /* JSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DB5BF248E414100AF8152 /* JSONService.swift */; };
@@ -22,6 +22,7 @@
 		15345EA3248FC1E40083CB25 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15345EA1248FC1E40083CB25 /* PopUpViewController.swift */; };
 		15345EA4248FC1E40083CB25 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15345EA2248FC1E40083CB25 /* PopUpViewController.xib */; };
 		15345EA7248FC89B0083CB25 /* CostomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15345EA6248FC89B0083CB25 /* CostomButton.swift */; };
+		1567BD572497B9C000C16EA5 /* CostomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1567BD562497B9C000C16EA5 /* CostomAlert.swift */; };
 		15AC384E248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC384D248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift */; };
 		15AC3852248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AC3851248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard */; };
 		15AC3854248F8F7F00BDFCA4 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC3853248F8F7F00BDFCA4 /* NewViewController.swift */; };
@@ -39,7 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		151DB5B6248E2B0D00AF8152 /* ListsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCollectionViewController.swift; sourceTree = "<group>"; };
+		151DB5B6248E2B0D00AF8152 /* CategoryCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionDataSource.swift; sourceTree = "<group>"; };
 		151DB5B9248E2B2C00AF8152 /* ListsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCollectionViewCell.swift; sourceTree = "<group>"; };
 		151DB5BC248E3DB200AF8152 /* Lists.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Lists.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		151DB5BF248E414100AF8152 /* JSONService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONService.swift; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		15345EA1248FC1E40083CB25 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		15345EA2248FC1E40083CB25 /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		15345EA6248FC89B0083CB25 /* CostomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostomButton.swift; sourceTree = "<group>"; };
+		1567BD562497B9C000C16EA5 /* CostomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostomAlert.swift; sourceTree = "<group>"; };
 		15AC384D248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionOneCategoryViewController.swift; sourceTree = "<group>"; };
 		15AC3851248F8C8E00BDFCA4 /* NewItemStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewItemStoryboard.storyboard; sourceTree = "<group>"; };
 		15AC3853248F8F7F00BDFCA4 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				15345EA6248FC89B0083CB25 /* CostomButton.swift */,
+				1567BD562497B9C000C16EA5 /* CostomAlert.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -298,7 +301,7 @@
 		15FA9936248E9634004BFE33 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				151DB5B6248E2B0D00AF8152 /* ListsCollectionViewController.swift */,
+				151DB5B6248E2B0D00AF8152 /* CategoryCollectionDataSource.swift */,
 				151DB5C4248E617700AF8152 /* ExtentionListCollection.swift */,
 			);
 			path = DataSource;
@@ -417,7 +420,8 @@
 				15C46D91248E2784004C1C4B /* SceneDelegate.swift in Sources */,
 				15AC3854248F8F7F00BDFCA4 /* NewViewController.swift in Sources */,
 				152DA7A42490C5630029BAE4 /* CoreDataService.swift in Sources */,
-				151DB5B7248E2B0D00AF8152 /* ListsCollectionViewController.swift in Sources */,
+				1567BD572497B9C000C16EA5 /* CostomAlert.swift in Sources */,
+				151DB5B7248E2B0D00AF8152 /* CategoryCollectionDataSource.swift in Sources */,
 				15AC384E248EE1F100BDFCA4 /* ExtentionOneCategoryViewController.swift in Sources */,
 				153388E4248E796F00ED2719 /* ListViewController.swift in Sources */,
 				152DA7A12490BE880029BAE4 /* CategoryViewController.swift in Sources */,

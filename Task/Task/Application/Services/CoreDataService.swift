@@ -13,37 +13,54 @@ class CoreDataService {
 
    static let shared = CoreDataService()
 
+     lazy var taskPersistentContainer: NSPersistentContainer = {
+         let container = NSPersistentContainer(name: "Task")
+         container.loadPersistentStores(completionHandler: { (_, error) in
+             if let error = error as NSError? {
+                 fatalError("Unresolved error \(error), \(error.userInfo)")
+             }
+         })
+         return container
+     }()
+
+     // MARK: - Core Data Saving support
+
+     func saveContext () {
+         let context = taskPersistentContainer.viewContext
+         if context.hasChanges {
+             do {
+                 try context.save()
+             } catch {
+                 // Replace this implementation with code to handle the error appropriately.
+                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                 let nserror = error as NSError
+                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+             }
+         }
+     }
+
     func saveCategory(lists: ListsItem) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
+       let managedContext = taskPersistentContainer.viewContext
         let category = CategoryList(context: managedContext)
         category.name = lists.name
         category.imageName = lists.image
 
-        do {
-            try managedContext.save()
-        } catch {
-            print(error.localizedDescription)
-        }
+        saveContext()
     }
 
-    func fetchLists(complition: @escaping (_ _lists: [CategoryList]) -> Void) {
-
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
+    func fetchLists(complition: @escaping (_ lists: [CategoryList]) -> Void) {
+        let managedContext = taskPersistentContainer.viewContext
         let fetchRequest = NSFetchRequest<CategoryList>(entityName: "CategoryList")
         do {
             let categorys = try managedContext.fetch(fetchRequest)
             complition(categorys)
-        } catch {
+        } catch let error {
             print(error.localizedDescription)
         }
     }
 
     func saveTask(category: String, discription: String, date: Double) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-
+        let managedContext = taskPersistentContainer.viewContext
         let task = Task(context: managedContext)
         task.date = date
         task.discription = discription
@@ -55,18 +72,11 @@ class CoreDataService {
             }
         }
 
-        do {
-            try managedContext.save()
-            print("Успешное создание таска")
-            print(task)
-        } catch {
-            print(error.localizedDescription)
-        }
+        saveContext()
     }
 
     func fetchTasks(category: String? = nil, complition:@escaping (_ tasks: [Task]) -> Void) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = taskPersistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
         let sortDiscriptor = NSSortDescriptor(key: #keyPath(Task.date), ascending: false)
         let sortDiscriptor2 = NSSortDescriptor(key: #keyPath(Task.category), ascending: true)
@@ -84,7 +94,7 @@ class CoreDataService {
                 complition(taskFromSomeCategory)
             }
 
-        } catch {
+        } catch let error {
             print(error.localizedDescription)
         }
     }
@@ -97,7 +107,7 @@ class CoreDataService {
                 do {
                     try oneTask.managedObjectContext?.save()
                     print("Удачное изменение")
-                } catch {
+                } catch  let error {
                     print(error.localizedDescription)
                 }
 
@@ -105,15 +115,13 @@ class CoreDataService {
         }
     }
     func deleteTask(task: Task) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-
+        let managedContext = taskPersistentContainer.viewContext
         managedContext.delete(task)
 
         do {
             try managedContext.save()
             print("Удачное удаление")
-        } catch {
+        } catch let error {
             print(error.localizedDescription)
         }
     }

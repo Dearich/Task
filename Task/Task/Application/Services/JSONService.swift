@@ -8,9 +8,9 @@
 
 import Foundation
 
-class UseJson {
+class JSONService {
 
-    static let shared = UseJson()
+    static let shared = JSONService()
 
     private let jsonFilePath = Bundle.main.path(forResource: "Lists", ofType: "json")
     private let backgroudQueue = DispatchQueue(label: "ru.azizbek.DownloadData", qos: .userInteractive, attributes: .concurrent)

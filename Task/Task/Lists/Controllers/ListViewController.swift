@@ -9,23 +9,22 @@
 import UIKit
 import CoreData
 
-private let reuseIdentifier = "cell"
+private let reuseIdentifier = "CollectionCell"
 
 class ListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
-    var dataSource = ListsCollectionViewController()
+    var dataSource = CategoryCollectionDataSource()
     var listItems = [CategoryList]()
-    @objc dynamic var listNames: [String]?
-    var observer: NSKeyValueObservation?
+    var listNames: [String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(ListsCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.dataSource = dataSource
         collectionView.delegate = dataSource
-        dataSource.listsCollectionViewControllerDelegate = self
+        dataSource.categoryCollectionDataSourceDelegate = self
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -70,8 +69,8 @@ extension ListViewController {
 
 }
 
-extension ListViewController: ListsCollectionViewControllerDelegate {
-    func didSelectItem(dataSource: ListsCollectionViewController, indexPath: Int) {
+extension ListViewController: CategoryCollectionDataSourceDelegate {
+    func didSelectItem(dataSource: CategoryCollectionDataSource, indexPath: Int) {
 
         let stroyboard = UIStoryboard(name: "OneCategoty", bundle: nil)
         guard let viewController = stroyboard.instantiateViewController(identifier: "OneCategoryViewController") as? OneCategoryViewController else { return }

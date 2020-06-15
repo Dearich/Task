@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Objects {
+struct TaskSections {
 
     var sectionName: String!
     var sectionObjects: [Task]!
@@ -18,14 +18,14 @@ extension OneCategoryViewController: UITableViewDelegate, UITableViewDataSource 
 
     func numberOfSections(in tableView: UITableView) -> Int {
 
-        return objectArray.count
+        return taskSectionsArray.count
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 70))
             headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         let title = UILabel()
-        title.text = objectArray[section].sectionName
+        title.text = taskSectionsArray[section].sectionName
         title.textColor = .lightGray
         title.textAlignment = .left
         headerView.addSubview(title)
@@ -41,12 +41,12 @@ extension OneCategoryViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objectArray[section].sectionObjects.count
+        return taskSectionsArray[section].sectionObjects.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? OneCategoryTableViewCell else {return UITableViewCell()}
-        let oneTask = objectArray[indexPath.section].sectionObjects[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OneCategoryCell", for: indexPath) as? OneCategoryTableViewCell else {return UITableViewCell()}
+        let oneTask = taskSectionsArray[indexPath.section].sectionObjects[indexPath.row]
         cell.task = oneTask
 
         if oneTask.done {
@@ -83,7 +83,7 @@ extension OneCategoryViewController: UITableViewDelegate, UITableViewDataSource 
 
       func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let contextItem = UIContextualAction(style: .destructive, title: "Delete") {[weak self]  (_, _, _) in
-            guard let correntTask = self?.objectArray[indexPath.section].sectionObjects[indexPath.row] else { return }
+            guard let correntTask = self?.taskSectionsArray[indexPath.section].sectionObjects[indexPath.row] else { return }
              CoreDataService.shared.deleteTask(task: correntTask)
             DispatchQueue.main.async {
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -100,16 +100,14 @@ extension OneCategoryViewController: UITableViewDelegate, UITableViewDataSource 
         let headerViewMinHeight: CGFloat =  height + 70
 
         let offsetY: CGFloat = scrollView.contentOffset.y
+
         let newHeaderViewHeight: CGFloat = headerViewHeightConstraint.constant - offsetY
         if newHeaderViewHeight > headerViewMaxHeight {
-            UIView.animate(withDuration: 0.4) {
-                          self.imageOutlet.alpha = 1.0
-                          self.titleOutlet.alpha = 1.0
-                          self.tastsCountOutlet.alpha = 1.0
-                      }
             navigationItem.title = ""
+
             headerViewHeightConstraint.constant = headerViewMaxHeight
         } else if newHeaderViewHeight < headerViewMinHeight {
+
             headerViewHeightConstraint.constant = headerViewMinHeight
             navigationItem.title = "\(headerString)"
 
@@ -118,23 +116,10 @@ extension OneCategoryViewController: UITableViewDelegate, UITableViewDataSource 
             scrollView.contentOffset.y = 0
         }
 
-        if headerViewHeightConstraint.constant > 275 {
-            setAnimation(with: 1.0, duration: 0.1)
-        } else if headerViewHeightConstraint.constant  > 250 {
-            setAnimation(with: 0.7, duration: 0.1)
-        } else if headerViewHeightConstraint.constant  > 225 {
-            setAnimation(with: 0.6, duration: 0.1)
-        } else if headerViewHeightConstraint.constant  > 200 {
-            setAnimation(with: 0.5, duration: 0.1)
-        } else if headerViewHeightConstraint.constant  > 175 {
-            setAnimation(with: 0.4, duration: 0.1)
-        } else if headerViewHeightConstraint.constant  > 150 {
-            setAnimation(with: 0.3, duration: 0.1)
-        } else if headerViewHeightConstraint.constant  > 125 {
-            setAnimation(with: 0.2, duration: 0.1)
-        } else if headerViewHeightConstraint.constant  > 100 {
-            setAnimation(with: 0.0, duration: 0.1)
-        }
+        let dinamicAlpha = ((headerViewHeightConstraint.constant - headerViewMaxHeight) / headerViewMinHeight) + 1
+
+        setAnimation(with: dinamicAlpha, duration: 0.5)
+
     }
     private func setAnimation(with alpha: CGFloat, duration: TimeInterval) {
         UIView.animate(withDuration: duration) {
