@@ -39,7 +39,7 @@ class CoreDataService {
          }
      }
 
-    func saveCategory(lists: ListsItem) {
+    func saveCategory(lists: OneCategory) {
        let managedContext = taskPersistentContainer.viewContext
         let category = CategoryList(context: managedContext)
         category.name = lists.name

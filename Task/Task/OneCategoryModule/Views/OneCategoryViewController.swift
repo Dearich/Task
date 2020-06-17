@@ -17,8 +17,6 @@ class OneCategoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: UIView!
 
-    var headerString: String = ""
-    var imageString: String = ""
     var oneCategoryPresenter: OneCategoryViewPresenter!
 
     override func viewDidLoad() {
@@ -43,10 +41,8 @@ class OneCategoryViewController: UIViewController {
     }
 
     @IBAction func addTapped(_ sender: UIButton) {
-        let viewController = ModuleBuilder.createNewTaskScreen()
-        print(headerString)
-        viewController.newTaskPresenter.categoryString = headerString
-        navigationController?.show(viewController, sender: sender)
+        guard let navigationController = self.navigationController else { return }
+        oneCategoryPresenter.addNewTaskAction(navigationController: navigationController, sender: sender)
     }
 
 }
@@ -54,12 +50,12 @@ class OneCategoryViewController: UIViewController {
 extension OneCategoryViewController {
 
     func setUpHeaderView() {
-        imageOutlet.image = UIImage(named: imageString)
+        imageOutlet.image = UIImage(named: oneCategoryPresenter.imageString)
         imageOutlet.backgroundColor = .white
         imageOutlet.layer.masksToBounds = true
         imageOutlet.layer.cornerRadius = 30
 
-        titleOutlet.text = headerString
+        titleOutlet.text = oneCategoryPresenter.headerString
         titleOutlet.textColor = .white
     }
 

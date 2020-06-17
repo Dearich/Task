@@ -8,25 +8,25 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, MainViewProtocol {
+
+    var mainView: UIView = UIView()
+
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
 
     var mainPresenter: MainViewPresenterProtocol!
-    let activityIndicatior = UIActivityIndicatorView(style: .large)
 
         override func viewDidLoad() {
             super.viewDidLoad()
-            // Do any additional setup after loading the view.
+            mainView = self.view
             navigationController?.navigationBar.isHidden = true
-            view.setUpActivityIndicator(view: view, activityIndicator: activityIndicatior)
             guard let navigationController = self.navigationController else { return }
             mainPresenter.goToNextScreen(navigationController: navigationController )
-            activityIndicatior.stopAnimating()
-            activityIndicatior.isHidden = true
         }
 
     }
 
-    extension MainViewController: MainViewProtocol {
+    extension MainViewController {
         func checkFirstStart(bool: Bool) {
             print(bool)
         }

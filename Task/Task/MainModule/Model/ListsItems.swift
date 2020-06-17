@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct ListsItem: Codable {
+struct OneCategory: Codable {
     var name: String
     var image: String
 }
 
-struct ListsOfItems: Codable {
-    var lists: [ListsItem]
+struct Categories: Codable {
+    var lists: [OneCategory]
 
 }

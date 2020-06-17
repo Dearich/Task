@@ -109,7 +109,7 @@ extension OneCategoryViewController: UITableViewDelegate, UITableViewDataSource 
         } else if newHeaderViewHeight < headerViewMinHeight {
 
             headerViewHeightConstraint.constant = headerViewMinHeight
-            navigationItem.title = "\(headerString)"
+            navigationItem.title = "\(oneCategoryPresenter.headerString)"
 
         } else {
             headerViewHeightConstraint.constant = newHeaderViewHeight

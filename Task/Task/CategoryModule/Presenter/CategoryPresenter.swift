@@ -47,14 +47,14 @@ class CategoryPresenter: CategoryViewPresenterProtocol {
 }
 
 extension CategoryPresenter: CategoryCollectionDataSourceDelegate {
-      func didSelectItem(dataSource: CategoryCollectionDataSource, indexPath: Int) {
+    func didSelectItem(dataSource: CategoryCollectionDataSource, indexPath: Int) {
 
         let viewController = ModuleBuilder.createOneCategoryScreen()
-            guard let headerName = categories[indexPath].name else { return }
-            guard let imageName = categories[indexPath].imageName else { return }
-            viewController.headerString = headerName
-            viewController.imageString = imageName
+        guard let headerName = categories[indexPath].name else { return }
+        guard let imageName = categories[indexPath].imageName else { return }
+        viewController.oneCategoryPresenter.headerString = headerName
+        viewController.oneCategoryPresenter.imageString = imageName
         guard let navigationController = view.categoryNavigationController else { return }
         navigationController.show(viewController, sender: self)
-            }
+    }
 }

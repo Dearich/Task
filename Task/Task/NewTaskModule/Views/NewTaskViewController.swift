@@ -9,7 +9,6 @@
 import UIKit
 
 class NewTaskViewController: UIViewController, NewTaskViewProtocol {
-    
 
     @IBOutlet weak var textViewOutlet: UITextView!
     @IBOutlet weak var subView: UIView!
@@ -51,7 +50,6 @@ class NewTaskViewController: UIViewController, NewTaskViewProtocol {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
         costomtextView()
-       
     }
     @objc func close() {
         guard let navigationController = self.navigationController else { return }

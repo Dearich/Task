@@ -31,7 +31,7 @@ class JSONService {
 
     }
 
-    func parse( completion: @escaping (_ decodeData: ListsOfItems?, _ error: Error?) -> Void) {
+    func parse( completion: @escaping (_ decodeData: Categories?, _ error: Error?) -> Void) {
 
         backgroudQueue.async {
             self.readFromFile { (data, error) in
@@ -41,7 +41,7 @@ class JSONService {
                 } else {
                     do {
                         guard let unwraptedData = data else {return}
-                        let decodedData = try JSONDecoder().decode(ListsOfItems.self, from: unwraptedData)
+                        let decodedData = try JSONDecoder().decode(Categories.self, from: unwraptedData)
                         completion(decodedData, nil)
 
                     } catch {

@@ -24,9 +24,6 @@ protocol NewTaskViewPresenterProtocol {
     var categoryString: String { get set }
     init(view: NewTaskViewProtocol)
 }
-//let needToUpdateNotificationID = "ru.azizbek.needToUpdateTableNotificationID"
-//
-//       NotificationCenter.default.addObserver(self, selector: #selector(handle(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
 class NewTaskPresenter: NewTaskViewPresenterProtocol {
 
@@ -48,9 +45,9 @@ class NewTaskPresenter: NewTaskViewPresenterProtocol {
         self.view = view
         categoryViewController.categoryViewControllerDelegate = self
         popUpViewController.popUpViewControllerDelegate = self
-         NotificationCenter.default.addObserver(self, selector: #selector(handle(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handle(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
-    
+
     @objc private func handle(keyboardShowNotification notification: Notification) {
 
            print("Keyboard show notification")
@@ -122,34 +119,3 @@ extension NewTaskPresenter: CategoryViewControllerDelegate, PopUpViewControllerD
     }
 
 }
-
-//@objc private func handle(keyboardShowNotification notification: Notification) {
-//
-//    print("Keyboard show notification")
-//
-//    if let userInfo = notification.userInfo,
-//
-//        let keyboardRectangle = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-//        print(keyboardRectangle.height)
-//        UIView.animate(withDuration: 0.1) {
-//            self.bottomConstraint.constant = keyboardRectangle.height
-//        }
-//    }
-//}
-
-/*
-
- @objc func close() {
- }
-
- @IBAction func createAction(_ sender: UIButton) {
-     guard !textViewOutlet.text.isEmpty else { costomAlert.setup(title: "Empty Task", discription: ""); return }
-     guard categoryLabel.text != "Category" else { costomAlert.setup(title: "Choose Category", discription: ""); return }
-
-     if timestamp == 0.0 {
-         let date = Date().timeIntervalSince1970
-         timestamp = date
-     }
-      guard let timestamp = timestamp else { return }
-
- }*/

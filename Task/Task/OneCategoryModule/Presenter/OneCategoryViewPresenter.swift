@@ -14,6 +14,8 @@ class OneCategoryViewPresenter {
     let needToUpdateNotificationID = "ru.azizbek.needToUpdateTableNotificationID"
     var newDictionary = ["Late": [Task](), "In progress": [Task](), "Done": [Task]()]
     var taskSectionsArray = [TaskSections]()
+    var headerString: String = ""
+    var imageString: String = ""
     let headerViewMaxHeight: CGFloat = 290
     let height = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
 
@@ -79,4 +81,13 @@ class OneCategoryViewPresenter {
                }
            }
        }
+    func addNewTaskAction(navigationController: UINavigationController, sender: UIButton)  {
+        let viewController = ModuleBuilder.createNewTaskScreen()
+        print(headerString)
+        if headerString == "All"{
+            headerString = "Category"
+        }
+        viewController.newTaskPresenter.categoryString = headerString
+        navigationController.show(viewController, sender: sender)
+    }
 }
