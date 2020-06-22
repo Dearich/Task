@@ -1,0 +1,28 @@
+disabled_rules:
+- colon
+- comma
+- control_statement
+- line_length
+- function_body_length
+- cyclomatic_complexity
+
+
+opt_in_rules:
+- empty_count
+- missing_docs
+- nesting
+- force_try/cast/unwrapping
+- weak_delegate
+
+
+excluded:
+- Carthage
+- Pods
+- Source/ExcludedFolder
+- Source/ExcludedFile.swift
+
+
+reporter: xcode
+
+
+warning_threshold: 30
